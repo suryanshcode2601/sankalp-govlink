@@ -1,0 +1,5 @@
+{
+  "name": "GovConnect AI",
+  "description": "A smart city management platform for citizens and leaders to report and track urban issues using AI.",
+  "requestFramePermissions": ["geolocation"]
+}
