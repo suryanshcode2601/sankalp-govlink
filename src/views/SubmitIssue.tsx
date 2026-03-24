@@ -228,7 +228,7 @@ export default function SubmitIssue() {
     if (files.length > 0) {
       const formData = new FormData();
       files.forEach(f => formData.append("files", f));
-      const uploadRes = await fetch("http://sankalp-govlink-production.up.railway.app/api/upload", {
+      const uploadRes = await fetch("https://sankalp-govlink-production.up.railway.app/api/upload", {
         method: "POST",
         body: formData,
       });
@@ -237,7 +237,7 @@ export default function SubmitIssue() {
     }
 
     // 2. Submit the issue with paths
-    const response = await fetch("http://sankalp-govlink-production.up.railway.app/api/issues", {
+    const response = await fetch("https://sankalp-govlink-production.up.railway.app/api/issues", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
