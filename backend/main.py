@@ -11,9 +11,23 @@ import os, shutil, uuid
 from typing import List
 from classifier import classify_issue, calculate_urgency
 
-  # ← add this line
+  
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://sankalp-govlink-lh21.vercel.app"  
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 database_models.Base.metadata.create_all(bind=engine)
@@ -22,19 +36,7 @@ database_models.Base.metadata.create_all(bind=engine)
 def get_timeline():
     return []
 
-app.add_middleware(
-    CORSMiddleware,
-     # temporary, allows everything
-    
-    allow_origins=[
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://sankalp-govlink.vercel.app/"
-],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
 
 database_models.Base.metadata.create_all(bind=engine)
 
