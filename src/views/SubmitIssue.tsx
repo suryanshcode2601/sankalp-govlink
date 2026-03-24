@@ -79,7 +79,7 @@ export default function SubmitIssue() {
     const timeout = setTimeout(async () => {
       setAiLoading(true);
       try {
-        const res = await fetch('http://127.0.0.1:8000/api/classify', {
+        const res = await fetch('https://sankalp-govlink-production.up.railway.app/api/classify', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ description }),
