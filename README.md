@@ -61,7 +61,7 @@ The predicted category is automatically stored in the database and used by the t
 
 ## 1️⃣ Clone the Repository
 
-git clone https://github.com/harsh7217288/govlink.git
+git clone https://github.com/suryanshcode2601/sankalp-govlink.git
 
 # Backend Setup (FastAPI)
 
