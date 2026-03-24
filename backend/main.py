@@ -1,13 +1,3 @@
-# from fastapi import Depends, FastAPI
-# from fastapi.middleware.cors import CORSMiddleware
-
-# import database_models
-
-# from database import engine
-
-
-# app = FastAPI()
-
 from pydantic import BaseModel
 from fastapi import Depends, FastAPI, File, UploadFile
 from fastapi.staticfiles import StaticFiles

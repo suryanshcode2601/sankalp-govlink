@@ -1112,6 +1112,9 @@ export default function AdminPanel() {
                     <option value="Roads">🛣️ Roads</option>
                     <option value="Water">💧 Water</option>
                     <option value="Electricity">⚡ Electricity</option>
+                    <option value="Safety">🛡️Safety</option>
+                    <option value="Infrastructure">Infrastructure</option>
+
                   </select>
                 </div>
  

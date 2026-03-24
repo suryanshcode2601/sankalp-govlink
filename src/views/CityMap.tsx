@@ -219,7 +219,7 @@ export default function CityMap() {
                 </div>
 
                 <button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
-                  <CheckCircle2 size={18} /> Mark as Verified
+                  <CheckCircle2 size={18} /> Marked as Verified
                 </button>
               </div>
             </div>
