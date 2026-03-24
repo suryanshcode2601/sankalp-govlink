@@ -87,7 +87,7 @@ export default function AdminPanel() {
  
   // ── Fetch issues from backend
   const fetchIssues = () => {
-    fetch("http://sankalp-govlink-production.up.railway.app/admin/issues")
+    fetch("https://sankalp-govlink-production.up.railway.app/admin/issues")
       .then((res) => res.json())
       .then((data) => {
         setIssues(data);
@@ -118,7 +118,7 @@ export default function AdminPanel() {
     .sort((a, b) => b.urgency - a.urgency);
  
   function handleVerifyConfirm(issue: Issue) {
-    fetch(`http://sankalp-govlink-production.up.railway.app/admin/issues/${issue.id}/verify`, {
+    fetch(`https://sankalp-govlink-production.up.railway.app/admin/issues/${issue.id}/verify`, {
       method: "PATCH",
     }).then(() => {
       setIssues((prev) =>
@@ -130,7 +130,7 @@ export default function AdminPanel() {
   }
  
   function handleRejectConfirm(issue: Issue) {
-    fetch(`sankalp-govlink-production.up.railway.app/admin/issues/${issue.id}`, {
+    fetch(`https://sankalp-govlink-production.up.railway.app/admin/issues/${issue.id}`, {
       method: "DELETE",
     }).then(() => {
       setIssues((prev) => prev.filter((i) => i.id !== issue.id));
@@ -139,7 +139,7 @@ export default function AdminPanel() {
   }
  
   function handleResolveConfirm(issue: Issue) {
-    fetch(`http://sankalp-govlink-production.up.railway.app/admin/issues/${issue.id}/resolve`, {
+    fetch(`https://sankalp-govlink-production.up.railway.app/admin/issues/${issue.id}/resolve`, {
       method: "PATCH",
     }).then(() => {
       setIssues((prev) =>
@@ -151,7 +151,7 @@ export default function AdminPanel() {
  
   function handleForwardSubmit() {
     if (!forwardIssue) return;
-    fetch(`http://sankalp-govlink-production.up.railway.app/admin/issues/${forwardIssue.id}/forward`, {
+    fetch(`https://sankalp-govlink-production.up.railway.app/admin/issues/${forwardIssue.id}/forward`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
