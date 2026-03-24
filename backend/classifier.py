@@ -1,16 +1,14 @@
-from transformers import pipeline
+import requests
+import os
 
-classifier = pipeline(
-    "zero-shot-classification",
-    model="facebook/bart-large-mnli"
-)
+API_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-mnli"
+headers = {"Authorization": f"Bearer {os.environ.get('HF_TOKEN')}"}
 
 labels = [
     "Roads", "Electricity", "Water",
     "Safety", "Healthcare", "Infrastructure"
 ]
 
-# Urgency levels with weights
 URGENCY_LEVELS = [
     "life threatening emergency requiring immediate action",
     "serious issue causing significant public harm",
@@ -19,26 +17,32 @@ URGENCY_LEVELS = [
 ]
 URGENCY_WEIGHTS = [100, 75, 40, 10]
 
+def _zero_shot(text: str, candidate_labels: list, multi_label: bool = False) -> dict:
+    payload = {
+        "inputs": text,
+        "parameters": {
+            "candidate_labels": candidate_labels,
+            "multi_label": multi_label
+        }
+    }
+    response = requests.post(API_URL, headers=headers, json=payload)
+    return response.json()
+
 def classify_issue(text: str) -> str:
-    result = classifier(text, labels)
+    result = _zero_shot(text, labels)
     return result["labels"][0]
 
 def calculate_urgency(text: str) -> int:
-    result = classifier(text, URGENCY_LEVELS, multi_label=False)
-
-    # Map each label back to its weight
+    result = _zero_shot(text, URGENCY_LEVELS, multi_label=False)
     label_to_weight = dict(zip(URGENCY_LEVELS, URGENCY_WEIGHTS))
-
-    # Weighted sum using model confidence scores
     score = sum(
         result["scores"][i] * label_to_weight[result["labels"][i]]
         for i in range(len(result["labels"]))
     )
-
-    return round(score)  
+    return round(score)
 
 def classify_with_confidence(text: str) -> dict:
-    result = classifier(text, labels)
+    result = _zero_shot(text, labels)
     return {
         "type": result["labels"][0],
         "confidence": result["scores"][0]
