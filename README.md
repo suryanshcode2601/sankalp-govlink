@@ -1,4 +1,4 @@
-# this is not the updated and latest readme
+## Currently website is under developement and not fully functional , README also needs some fix
 
 # GovConnect – AI-Powered Civic Issue Reporting Platform
 
